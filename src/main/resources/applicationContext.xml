@@ -2,17 +2,39 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <context:property-placeholder location="application.properties"/>
+    <bean id="musicBean1"
+          class="ru.vorobyssshek.springapp.ClassicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+    factory-method="getClassicalMusic">
+    </bean>
+<!--    <bean id="musicBean2"-->
+<!--          class="ru.vorobyssshek.springapp.ClassicalMusic"-->
+<!--          init-method="doMyInit"-->
+<!--          destroy-method="doMyDestroy"-->
+<!--    factory-method="getClassicalMusic">-->
+<!--    </bean>-->
+<!--        <bean id="musicBean2"-->
+<!--              class="ru.vorobyssshek.springapp.RockMusic">-->
+<!--        </bean>-->
+<!--        <bean id="musicBean3"-->
+<!--              class="ru.vorobyssshek.springapp.PopMusic">-->
+<!--        </bean>-->
 
-    <bean id="musicBean"
-          class="ru.vorobyssshek.springapp.ClassicalMusic">
-    </bean>
-    <bean id="musicPlayer"
-          class="ru.vorobyssshek.springapp.MusicPlayer">
-        <constructor-arg ref="musicBean"/>
-    </bean>
+<!--        <bean id="musicPlayer" class="ru.vorobyssshek.springapp.MusicPlayer">-->
+<!--            <constructor-arg>-->
+<!--                <list>-->
+<!--                    <ref bean="musicBean1"/>-->
+<!--&lt;!&ndash;                    <ref bean="musicBean2"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <ref bean="musicBean3"/>&ndash;&gt;-->
+<!--                </list>-->
+<!--            </constructor-arg>-->
+<!--        </bean>-->
 
 </beans>

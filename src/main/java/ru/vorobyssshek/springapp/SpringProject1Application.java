@@ -14,13 +14,17 @@ public class SpringProject1Application {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context
                 = new ClassPathXmlApplicationContext("applicationContext.xml");
-        SpringApplication.run(SpringProject1Application.class, args);
+//        SpringApplication.run(SpringProject1Application.class, args);
 
         //Music music = context.getBean("musicBean", Music.class);
         //MusicPlayer musicPlayer = new MusicPlayer(music);
-        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        musicPlayer.playMusic();
-        context.close();
+        ClassicalMusic classicalMusic = context.getBean("musicBean1", ClassicalMusic.class);
+        ClassicalMusic classicalMusic1 = context.getBean("musicBean1", ClassicalMusic.class);
+        System.out.println(classicalMusic1 == classicalMusic);
+//        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+//        musicPlayer.playMusic();
+//        context.close();
+
     }
 
     @GetMapping("/hello")
