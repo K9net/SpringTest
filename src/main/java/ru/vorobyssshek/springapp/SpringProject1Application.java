@@ -1,34 +1,16 @@
 package ru.vorobyssshek.springapp;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
-@RestController
+
 public class SpringProject1Application {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context
-                = new ClassPathXmlApplicationContext("applicationContext.xml");
-//        SpringApplication.run(SpringProject1Application.class, args);
-
-        //Music music = context.getBean("musicBean", Music.class);
-        //MusicPlayer musicPlayer = new MusicPlayer(music);
-        ClassicalMusic classicalMusic = context.getBean("musicBean1", ClassicalMusic.class);
-        ClassicalMusic classicalMusic1 = context.getBean("musicBean1", ClassicalMusic.class);
-        System.out.println(classicalMusic1 == classicalMusic);
-//        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-//        musicPlayer.playMusic();
-//        context.close();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        musicPlayer.playMusic();
 
     }
 
-    @GetMapping("/hello")
-    public String sayHello(@RequestParam(value = "myName", defaultValue = "World") String name){
-        return String.format("Hello, %s!", name);
-    }
+
 }

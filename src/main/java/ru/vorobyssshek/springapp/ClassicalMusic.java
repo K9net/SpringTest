@@ -1,21 +1,33 @@
 package ru.vorobyssshek.springapp;
 
-public class ClassicalMusic implements Music{
-    private ClassicalMusic(){}
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
-    public static ClassicalMusic getClassicalMusic(){
-        return new ClassicalMusic();
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class ClassicalMusic implements Music {
+    @PostConstruct
+    public void doMyInit() {
+        System.out.println("init method...");
     }
 
-    public void doMyInit(){
-        System.out.println("Initialization...");
+    @PreDestroy
+    public void doMyDestroy() {
+        System.out.println("destroy method");
     }
 
-    public void doMyDestroy(){
-        System.out.println("Destroying...");
+    private List<String> songs = new ArrayList<>();
+
+    {
+        songs.add("Classical music 111");
+        songs.add("Classical music 222");
+        songs.add("Classical music 333");
     }
+
     @Override
-    public String getSong() {
-        return "Classical music";
+    public List<String> getSongs() {
+        return songs;
     }
 }
